@@ -19,7 +19,7 @@ public class GatewayApplication {
     {
         //hna thotou les paths mtaa vos api
         //http://localhost:8082 hedha path les microservices mteekom ili tetruna hna juste hatit exemple
-        return build.routes().route("event",r->r.path("/hello")
+        return build.routes().route("event",r->r.path("/pack/hello")
                 .uri("http://localhost:8082")).build();
     }
 }

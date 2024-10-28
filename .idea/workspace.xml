@@ -5,7 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac47604e-0dd5-42e8-9bd2-c561145c7e9e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/entity/Activity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/entity/Pack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/repository/activityRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/repository/packRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/service/IPackageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/GatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,15 +37,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2o1Y9MLrdWP3DGObrkYktCEjN8s" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,28 +63,54 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.GatewayApplication.executor": "Run",
-    "git-widget-placeholder": "main",
+    "Spring Boot.PackMServiceApplication.executor": "Run",
+    "Spring Boot.ServeurEurekaApplication.executor": "Run",
+    "git-widget-placeholder": "rihem__gestionPack",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/the cast/Desktop/webDist/ServeurEureka",
+    "last_opened_file_path": "C:/Users/the cast/Desktop/webDist/Gateway",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\the cast\Desktop\webDist\Pack_MService\src\main\java\com\example\pack_mservice\service" />
+      <recent name="C:\Users\the cast\Desktop\webDist\Pack_MService\src\main\java\com\example\pack_mservice\repository" />
+      <recent name="C:\Users\the cast\Desktop\webDist\Pack_MService\src\main\java\com\example\pack_mservice\entity" />
+      <recent name="C:\Users\the cast\Desktop\webDist\Pack_MService\src\main\java\com\example\pack_mservice\controller" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\the cast\Desktop\webDist" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.PackMServiceApplication">
     <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.gateway.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PackMServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Pack_MService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.pack_mservice.PackMServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -94,7 +138,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1730038397053</updated>
-      <workItem from="1730038398406" duration="4457000" />
+      <workItem from="1730038398406" duration="11708000" />
+      <workItem from="1730113685710" duration="2668000" />
     </task>
     <servers />
   </component>
