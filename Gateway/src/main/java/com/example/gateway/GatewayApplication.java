@@ -7,8 +7,8 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
 @EnableDiscoveryClient
+@SpringBootApplication
 public class GatewayApplication {
 
     public static void main(String[] args) {
@@ -17,10 +17,8 @@ public class GatewayApplication {
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder build)
     {
-        //hna thotou les paths mtaa vos api
-        //http://localhost:8082 hedha path les microservices mteekom ili tetruna hna juste hatit exemple
         return build.routes().route("event",r->r.path("/pack/hello")
-                .uri("http://localhost:8082")).build();
+                .uri("http://localhost:8082/Pack_MService")).build();
     }
 }
 

@@ -1,0 +1,159 @@
+Index: Gateway/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.application.name=Gateway\r\nserver.port=8081\r\n# eureka registration\r\neureka.client.service-url.defaultZone=http://localhost:8761/eureka/\r\neureka.client.register-with-eureka=true\r\nspring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:8080/realms/VeloApplication
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/Gateway/src/main/resources/application.properties b/Gateway/src/main/resources/application.properties
+--- a/Gateway/src/main/resources/application.properties	
++++ b/Gateway/src/main/resources/application.properties	
+@@ -3,4 +3,4 @@
+ # eureka registration
+ eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+ eureka.client.register-with-eureka=true
+-spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:8080/realms/VeloApplication
+\ No newline at end of file
++spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:8080/realms/VeloApplication
+Index: Pack_MService/src/main/java/com/example/pack_mservice/SecurityConfig.java
+===================================================================
+diff --git a/Pack_MService/src/main/java/com/example/pack_mservice/SecurityConfig.java b/Pack_MService/src/main/java/com/example/pack_mservice/SecurityConfig.java
+deleted file mode 100644
+--- a/Pack_MService/src/main/java/com/example/pack_mservice/SecurityConfig.java	
++++ /dev/null	
+@@ -1,21 +0,0 @@
+-package com.example.pack_mservice;
+-import org.springframework.context.annotation.Bean;
+-import org.springframework.context.annotation.Configuration;
+-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+-import org.springframework.security.web.SecurityFilterChain;
+-
+-@Configuration
+-public class SecurityConfig {
+-
+-    @Bean
+-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+-        http
+-                .authorizeHttpRequests(authorize -> authorize
+-                        .anyRequest().permitAll()  // Allow all requests
+-                )
+-                .csrf(csrf -> csrf.disable());  // Disable CSRF protection if needed
+-
+-        return http.build();
+-    }
+-}
+-
+Index: Gateway/src/main/java/com/example/gateway/GatewayApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.gateway;\r\n\r\nimport org.springframework.boot.SpringApplication;\r\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\r\nimport org.springframework.cloud.client.discovery.EnableDiscoveryClient;\r\nimport org.springframework.cloud.gateway.route.RouteLocator;\r\nimport org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;\r\nimport org.springframework.context.annotation.Bean;\r\n\r\n@SpringBootApplication\r\n@EnableDiscoveryClient\r\npublic class GatewayApplication {\r\n\r\n    public static void main(String[] args) {\r\n        SpringApplication.run(GatewayApplication.class, args);\r\n    }\r\n    @Bean\r\n    public RouteLocator gatewayRoutes(RouteLocatorBuilder build)\r\n    {\r\n        //hna thotou les paths mtaa vos api\r\n        //http://localhost:8082 hedha path les microservices mteekom ili tetruna hna juste hatit exemple\r\n        return build.routes().route(\"event\",r->r.path(\"/pack/hello\")\r\n                .uri(\"http://localhost:8082\")).build();\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Gateway/src/main/java/com/example/gateway/GatewayApplication.java b/Gateway/src/main/java/com/example/gateway/GatewayApplication.java
+--- a/Gateway/src/main/java/com/example/gateway/GatewayApplication.java	
++++ b/Gateway/src/main/java/com/example/gateway/GatewayApplication.java	
+@@ -15,12 +15,11 @@
+         SpringApplication.run(GatewayApplication.class, args);
+     }
+     @Bean
+-    public RouteLocator gatewayRoutes(RouteLocatorBuilder build)
+-    {
+-        //hna thotou les paths mtaa vos api
+-        //http://localhost:8082 hedha path les microservices mteekom ili tetruna hna juste hatit exemple
+-        return build.routes().route("event",r->r.path("/pack/hello")
+-                .uri("http://localhost:8082")).build();
++    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
++        return builder.routes()
++                .route("packService", r -> r.path("/pack/**")
++                        .uri("http://localhost:8082")) // microservice for '/pack'
++                .build();
+     }
+ }
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ac47604e-0dd5-42e8-9bd2-c561145c7e9e\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/SecurityConfig.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/entity/Activity.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/entity/Pack.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/repository/activityRepository.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/repository/packRepository.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/service/IPackageService.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/compiler.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/compiler.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/encodings.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/encodings.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/GatewayApplication.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/GatewayApplication.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/SecurityConfig.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/SecurityConfig.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/Gateway/src/main/resources/application.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/Gateway/src/main/resources/application.properties\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"DEPENDENCY_CHECKER_PROBLEMS_TAB\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 8\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2o1Y9MLrdWP3DGObrkYktCEjN8s\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Maven.Gateway [install].executor\": \"Run\",\r\n    \"RequestMappingsPanelOrder0\": \"0\",\r\n    \"RequestMappingsPanelOrder1\": \"1\",\r\n    \"RequestMappingsPanelWidth0\": \"75\",\r\n    \"RequestMappingsPanelWidth1\": \"75\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"Spring Boot.GatewayApplication.executor\": \"Run\",\r\n    \"Spring Boot.PackMServiceApplication.executor\": \"Run\",\r\n    \"Spring Boot.ServeurEurekaApplication.executor\": \"Run\",\r\n    \"git-widget-placeholder\": \"rihem__gestionPack\",\r\n    \"jdk.selected.JAVA_MODULE\": \"17\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/the cast/Desktop/webDist/Gateway\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"run.configurations.included.in.services\": \"true\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\the cast\\Desktop\\webDist\\Pack_MService\\src\\main\\java\\com\\example\\pack_mservice\\service\" />\r\n      <recent name=\"C:\\Users\\the cast\\Desktop\\webDist\\Pack_MService\\src\\main\\java\\com\\example\\pack_mservice\\repository\" />\r\n      <recent name=\"C:\\Users\\the cast\\Desktop\\webDist\\Pack_MService\\src\\main\\java\\com\\example\\pack_mservice\\entity\" />\r\n      <recent name=\"C:\\Users\\the cast\\Desktop\\webDist\\Pack_MService\\src\\main\\java\\com\\example\\pack_mservice\\controller\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\the cast\\Desktop\\webDist\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunDashboard\">\r\n    <option name=\"configurationTypes\">\r\n      <set>\r\n        <option value=\"MicronautRunConfigurationType\" />\r\n        <option value=\"QuarkusRunConfigurationType\" />\r\n        <option value=\"SpringBootApplicationConfigurationType\" />\r\n      </set>\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Spring Boot.PackMServiceApplication\">\r\n    <configuration name=\"GatewayApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"Gateway\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.example.gateway.GatewayApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"PackMServiceApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"Pack_MService\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.example.pack_mservice.PackMServiceApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ServeurEurekaApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\" nameIsGenerated=\"true\">\r\n      <module name=\"ServeurEureka\" />\r\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.example.serveureureka.ServeurEurekaApplication\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ac47604e-0dd5-42e8-9bd2-c561145c7e9e\" name=\"Changes\" comment=\"\" />\r\n      <created>1730038397053</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1730038397053</updated>\r\n      <workItem from=\"1730038398406\" duration=\"11708000\" />\r\n      <workItem from=\"1730113685710\" duration=\"2668000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,22 +5,18 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="ac47604e-0dd5-42e8-9bd2-c561145c7e9e" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/SecurityConfig.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/entity/Activity.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/entity/Pack.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/repository/activityRepository.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/repository/packRepository.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/service/IPackageService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/config/CorsConfig.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/pom.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/GatewayApplication.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/SecurityConfig.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/Gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/resources/application.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Pack_MService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Pack_MService/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/PackMServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/PackMServiceApplication.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/SecurityConfig.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Pack_MService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Pack_MService/src/main/resources/application.properties" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -56,6 +52,7 @@
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
++    "Maven.Gateway [clean].executor": "Run",
+     "Maven.Gateway [install].executor": "Run",
+     "RequestMappingsPanelOrder0": "0",
+     "RequestMappingsPanelOrder1": "1",
+@@ -70,7 +67,7 @@
+     "git-widget-placeholder": "rihem__gestionPack",
+     "jdk.selected.JAVA_MODULE": "17",
+     "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/the cast/Desktop/webDist/Gateway",
++    "last_opened_file_path": "C:/Users/the cast/Desktop/webDist",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+@@ -139,7 +136,8 @@
+       <option name="presentableId" value="Default" />
+       <updated>1730038397053</updated>
+       <workItem from="1730038398406" duration="11708000" />
+-      <workItem from="1730113685710" duration="2668000" />
++      <workItem from="1730113685710" duration="8304000" />
++      <workItem from="1731147210650" duration="3356000" />
+     </task>
+     <servers />
+   </component>
+Index: Gateway/src/main/java/com/example/gateway/SecurityConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.gateway;\r\n\r\nimport org.springframework.context.annotation.Bean;\r\nimport org.springframework.context.annotation.Configuration;\r\nimport org.springframework.security.config.Customizer;\r\nimport org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;\r\nimport org.springframework.security.config.web.server.ServerHttpSecurity;\r\nimport org.springframework.security.web.server.SecurityWebFilterChain;\r\n\r\n@Configuration\r\n@EnableWebFluxSecurity\r\npublic class SecurityConfig {\r\n\r\n    @Bean\r\n    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {\r\n        return serverHttpSecurity.csrf(ServerHttpSecurity.CsrfSpec::disable)\r\n                .authorizeExchange(exchange -> exchange\r\n                        .anyExchange().permitAll()\r\n                ).oauth2ResourceServer((oauth) -> oauth\r\n                        .jwt(Customizer.withDefaults()))\r\n                .build();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Gateway/src/main/java/com/example/gateway/SecurityConfig.java b/Gateway/src/main/java/com/example/gateway/SecurityConfig.java
+--- a/Gateway/src/main/java/com/example/gateway/SecurityConfig.java	
++++ b/Gateway/src/main/java/com/example/gateway/SecurityConfig.java	
+@@ -15,6 +15,7 @@
+     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) {
+         return serverHttpSecurity.csrf(ServerHttpSecurity.CsrfSpec::disable)
+                 .authorizeExchange(exchange -> exchange
++                        .pathMatchers("/pack/**").authenticated()
+                         .anyExchange().permitAll()
+                 ).oauth2ResourceServer((oauth) -> oauth
+                         .jwt(Customizer.withDefaults()))

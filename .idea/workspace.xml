@@ -5,22 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac47604e-0dd5-42e8-9bd2-c561145c7e9e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/entity/Activity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/entity/Pack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/repository/activityRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/repository/packRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/service/IPackageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/GatewayApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/java/com/example/gateway/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Gateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pack_MService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Pack_MService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pack_MService/src/main/java/com/example/pack_mservice/SecurityConfig.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,11 +21,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="KubernetesApiProvider">{
@@ -44,7 +42,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -56,6 +54,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.Gateway [clean].executor": "Run",
     "Maven.Gateway [install].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -70,7 +69,7 @@
     "git-widget-placeholder": "rihem__gestionPack",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/the cast/Desktop/webDist/Gateway",
+    "last_opened_file_path": "C:/Users/the cast/Desktop/final web/webDist",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -100,7 +99,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.PackMServiceApplication">
+  <component name="RunManager" selected="Spring Boot.GatewayApplication">
     <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.gateway.GatewayApplication" />
@@ -140,6 +139,7 @@
       <updated>1730038397053</updated>
       <workItem from="1730038398406" duration="11708000" />
       <workItem from="1730113685710" duration="2668000" />
+      <workItem from="1731225730175" duration="3382000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,169 @@
+Index: Pack_MService/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n    <parent>\r\n        <groupId>org.springframework.boot</groupId>\r\n        <artifactId>spring-boot-starter-parent</artifactId>\r\n        <version>3.3.5</version>\r\n        <relativePath/> <!-- lookup parent from repository -->\r\n    </parent>\r\n    <groupId>com.example</groupId>\r\n    <artifactId>Pack_MService</artifactId>\r\n    <version>0.0.1-SNAPSHOT</version>\r\n    <name>Pack_MService</name>\r\n    <description>Pack_MService</description>\r\n    <url/>\r\n    <licenses>\r\n        <license/>\r\n    </licenses>\r\n    <developers>\r\n        <developer/>\r\n    </developers>\r\n    <scm>\r\n        <connection/>\r\n        <developerConnection/>\r\n        <tag/>\r\n        <url/>\r\n    </scm>\r\n    <properties>\r\n        <java.version>17</java.version>\r\n        <spring-cloud.version>2023.0.3</spring-cloud.version>\r\n    </properties>\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-data-jpa</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-oauth2-client</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-web</artifactId>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.cloud</groupId>\r\n            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>\r\n        </dependency>\r\n\r\n        <dependency>\r\n            <groupId>com.mysql</groupId>\r\n            <artifactId>mysql-connector-j</artifactId>\r\n            <scope>runtime</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.projectlombok</groupId>\r\n            <artifactId>lombok</artifactId>\r\n            <optional>true</optional>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.boot</groupId>\r\n            <artifactId>spring-boot-starter-test</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.springframework.security</groupId>\r\n            <artifactId>spring-security-test</artifactId>\r\n            <scope>test</scope>\r\n        </dependency>\r\n    </dependencies>\r\n    <dependencyManagement>\r\n        <dependencies>\r\n            <dependency>\r\n                <groupId>org.springframework.cloud</groupId>\r\n                <artifactId>spring-cloud-dependencies</artifactId>\r\n                <version>${spring-cloud.version}</version>\r\n                <type>pom</type>\r\n                <scope>import</scope>\r\n            </dependency>\r\n        </dependencies>\r\n    </dependencyManagement>\r\n\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.springframework.boot</groupId>\r\n                <artifactId>spring-boot-maven-plugin</artifactId>\r\n                <configuration>\r\n                    <excludes>\r\n                        <exclude>\r\n                            <groupId>org.projectlombok</groupId>\r\n                            <artifactId>lombok</artifactId>\r\n                        </exclude>\r\n                    </excludes>\r\n                </configuration>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n\r\n</project>\r\n
+===================================================================
+diff --git a/Pack_MService/pom.xml b/Pack_MService/pom.xml
+--- a/Pack_MService/pom.xml	
++++ b/Pack_MService/pom.xml	
+@@ -33,15 +33,23 @@
+     <dependencies>
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
++            <artifactId>spring-boot-starter-actuator</artifactId>
++        </dependency>
++        <dependency>
++            <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-data-jpa</artifactId>
+         </dependency>
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+-            <artifactId>spring-boot-starter-oauth2-client</artifactId>
++            <artifactId>spring-boot-starter-data-rest</artifactId>
+         </dependency>
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-web</artifactId>
++        </dependency>
++        <dependency>
++            <groupId>org.springframework.cloud</groupId>
++            <artifactId>spring-cloud-starter-config</artifactId>
+         </dependency>
+         <dependency>
+             <groupId>org.springframework.cloud</groupId>
+@@ -52,11 +60,6 @@
+             <groupId>com.mysql</groupId>
+             <artifactId>mysql-connector-j</artifactId>
+             <scope>runtime</scope>
+-        </dependency>
+-        <dependency>
+-            <groupId>org.projectlombok</groupId>
+-            <artifactId>lombok</artifactId>
+-            <optional>true</optional>
+         </dependency>
+         <dependency>
+             <groupId>org.springframework.boot</groupId>
+@@ -64,9 +67,17 @@
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+-            <groupId>org.springframework.security</groupId>
+-            <artifactId>spring-security-test</artifactId>
+-            <scope>test</scope>
++            <groupId>org.springframework.cloud</groupId>
++            <artifactId>spring-cloud-starter-bootstrap</artifactId>
++        </dependency>
++        <dependency>
++            <groupId>com.fasterxml.jackson.dataformat</groupId>
++            <artifactId>jackson-dataformat-xml</artifactId>
++        </dependency>
++        <dependency>
++            <groupId>org.projectlombok</groupId>
++            <artifactId>lombok</artifactId>
++            <optional>true</optional>
+         </dependency>
+     </dependencies>
+     <dependencyManagement>
+Index: Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.pack_mservice.controller;\r\nimport com.example.pack_mservice.entity.*;\r\nimport com.example.pack_mservice.service.packageService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\nimport java.util.List;\r\n\r\n@RestController\r\n@RequestMapping(\"/pack\")\r\npublic class PackageController {\r\n\r\n    @Autowired\r\n    private packageService packService;\r\n    @GetMapping(\"/hello\")\r\n    public String test() {\r\n        return \"hello\";\r\n    }\r\n    // Endpoint pour récupérer tous les packs\r\n    @GetMapping(\"/getAllPacks\")\r\n    public ResponseEntity<List<Pack>> getAllPackages() {\r\n        List<Pack> packages = packService.getAllPackages();\r\n        return ResponseEntity.ok(packages);\r\n    }\r\n\r\n    // Endpoint pour ajouter un nouveau pack\r\n    @PostMapping(\"/addPack\")\r\n    public ResponseEntity<Pack> addPack(@RequestBody Pack pack) {\r\n        Pack savedPack = packService.addPack(pack);\r\n        return ResponseEntity.ok(savedPack);\r\n    }\r\n\r\n    // Endpoint pour mettre à jour un pack\r\n    @PutMapping(\"update/{id}\")\r\n    public ResponseEntity<Pack> updatePack(@PathVariable Long id, @RequestBody Pack pack) {\r\n        pack.setPackId(id);  // Assurez-vous que l'ID correspond à celui de l'URL\r\n        Pack updatedPack = packService.updatePack(pack);\r\n        return ResponseEntity.ok(updatedPack);\r\n    }\r\n\r\n    // Endpoint pour supprimer un pack\r\n    @DeleteMapping(\"deletePack/{id}\")\r\n    public ResponseEntity<Void> deletePack(@PathVariable Long id) {\r\n        packService.deletePack(id);\r\n        return ResponseEntity.noContent().build();\r\n    }\r\n    @GetMapping(\"/search\")\r\n    public ResponseEntity<List<Pack>> findPacksByPriceAndDuration(\r\n            @RequestParam String minPrice,\r\n            @RequestParam String maxPrice,\r\n            @RequestParam String minDuration,\r\n            @RequestParam String maxDuration) {\r\n\r\n        List<Pack> packs = packService.findPacksByPriceAndDuration(minPrice, maxPrice, minDuration, maxDuration);\r\n\r\n        if (packs.isEmpty()) {\r\n            return ResponseEntity.noContent().build(); // Renvoie 204 si aucun pack n'est trouvé\r\n        }\r\n\r\n        return ResponseEntity.ok(packs); // Renvoie 200 avec la liste des packs\r\n    }\r\n    // Endpoint pour récupérer toutes les activités\r\n    @GetMapping(\"/activities\")\r\n    public ResponseEntity<List<Activity>> getAllActivities() {\r\n        List<Activity> activities = packService.getAllActitivities();\r\n        return ResponseEntity.ok(activities);\r\n    }\r\n\r\n    // Endpoint pour ajouter une nouvelle activité\r\n    @PostMapping(\"/addActivity\")\r\n    public ResponseEntity<Activity> addActivity(@RequestBody Activity activity) {\r\n        Activity savedActivity = packService.addActivity(activity);\r\n        return ResponseEntity.ok(savedActivity);\r\n    }\r\n\r\n    // Endpoint pour mettre à jour une activité\r\n    @PutMapping(\"/updateActivity/{id}\")\r\n    public ResponseEntity<Activity> updateActivity(@PathVariable Long id, @RequestBody Activity activity) {\r\n        activity.setActivityId(id);  // Assurez-vous que l'ID correspond à celui de l'URL\r\n        Activity updatedActivity = packService.updateActvity(activity);\r\n        return ResponseEntity.ok(updatedActivity);\r\n    }\r\n\r\n    // Endpoint pour supprimer une activité\r\n    @DeleteMapping(\"/deleteActivity/{id}\")\r\n    public ResponseEntity<Void> deleteActivity(@PathVariable Long id) {\r\n        packService.deleteActivity(id);\r\n        return ResponseEntity.noContent().build();\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java b/Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java
+--- a/Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java	
++++ b/Pack_MService/src/main/java/com/example/pack_mservice/controller/PackageController.java	
+@@ -10,7 +10,6 @@
+ @RestController
+ @RequestMapping("/pack")
+ public class PackageController {
+-
+     @Autowired
+     private packageService packService;
+     @GetMapping("/hello")
+@@ -24,14 +23,13 @@
+         return ResponseEntity.ok(packages);
+     }
+ 
+-    // Endpoint pour ajouter un nouveau pack
+     @PostMapping("/addPack")
+     public ResponseEntity<Pack> addPack(@RequestBody Pack pack) {
+         Pack savedPack = packService.addPack(pack);
+         return ResponseEntity.ok(savedPack);
+     }
+ 
+-    // Endpoint pour mettre à jour un pack
++
+     @PutMapping("update/{id}")
+     public ResponseEntity<Pack> updatePack(@PathVariable Long id, @RequestBody Pack pack) {
+         pack.setPackId(id);  // Assurez-vous que l'ID correspond à celui de l'URL
+@@ -39,7 +37,6 @@
+         return ResponseEntity.ok(updatedPack);
+     }
+ 
+-    // Endpoint pour supprimer un pack
+     @DeleteMapping("deletePack/{id}")
+     public ResponseEntity<Void> deletePack(@PathVariable Long id) {
+         packService.deletePack(id);
+Index: Pack_MService/src/main/java/com/example/pack_mservice/PackMServiceApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.pack_mservice;\r\n\r\nimport org.springframework.boot.SpringApplication;\r\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\r\nimport org.springframework.cloud.client.discovery.EnableDiscoveryClient;\r\n\r\n@SpringBootApplication\r\n@EnableDiscoveryClient\r\npublic class PackMServiceApplication {\r\n\r\n    public static void main(String[] args) {\r\n        SpringApplication.run(PackMServiceApplication.class, args);\r\n    }\r\n\r\n}\r\n
+===================================================================
+diff --git a/Pack_MService/src/main/java/com/example/pack_mservice/PackMServiceApplication.java b/Pack_MService/src/main/java/com/example/pack_mservice/PackMServiceApplication.java
+--- a/Pack_MService/src/main/java/com/example/pack_mservice/PackMServiceApplication.java	
++++ b/Pack_MService/src/main/java/com/example/pack_mservice/PackMServiceApplication.java	
+@@ -7,9 +7,9 @@
+ @SpringBootApplication
+ @EnableDiscoveryClient
+ public class PackMServiceApplication {
+-
+     public static void main(String[] args) {
+         SpringApplication.run(PackMServiceApplication.class, args);
+     }
+ 
+ }
++
+Index: Pack_MService/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>server.port=8082\r\nspring.application.name=Pack_MService\r\n# Disable Spring Cloud Config\r\nspring.datasource.url=jdbc:mysql://localhost:3306/locationVelo?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC\r\nspring.datasource.username=root\r\nspring.datasource.password=\r\n### JPA / HIBERNATE ###\r\nspring.jpa.show-sql=true\r\nspring.jpa.hibernate.ddl-auto=update\r\n# Eureka client configuration\r\neureka.client.register-with-eureka=true\r\neureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka/\r\neureka.instance.lease-renewal-interval-in-seconds=10\r\neureka.instance.lease-expiration-duration-in-seconds=30\r\n
+===================================================================
+diff --git a/Pack_MService/src/main/resources/application.properties b/Pack_MService/src/main/resources/application.properties
+--- a/Pack_MService/src/main/resources/application.properties	
++++ b/Pack_MService/src/main/resources/application.properties	
+@@ -6,7 +6,7 @@
+ spring.datasource.password=
+ ### JPA / HIBERNATE ###
+ spring.jpa.show-sql=true
+-spring.jpa.hibernate.ddl-auto=update
++spring.jpa.hibernate.ddl-auto=create
+ # Eureka client configuration
+ eureka.client.register-with-eureka=true
+ eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka/
+Index: Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.pack_mservice.service;\r\n\r\nimport jakarta.transaction.Transactional;\r\nimport lombok.*;\r\nimport lombok.extern.slf4j.Slf4j;\r\nimport com.example.pack_mservice.entity.*;\r\nimport com.example.pack_mservice.repository.activityRepository;\r\nimport com.example.pack_mservice.repository.packRepository;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.List;\r\n\r\n@Service\r\n@RequiredArgsConstructor\r\n@Transactional\r\n@Slf4j\r\npublic class packageService implements IPackageService{\r\n    @Autowired\r\n    packRepository packRepo;\r\n    @Autowired\r\n    activityRepository activityRepo;\r\n\r\n    @Override\r\n    public List<Pack> getAllPackages() {\r\n        return packRepo.findAll();\r\n    }\r\n\r\n    @Override\r\n    public Pack addPack(Pack p) {\r\n        return packRepo.save(p);    }\r\n\r\n    @Override\r\n    public Pack updatePack(Pack p) {\r\n        return packRepo.save(p);\r\n    }\r\n\r\n    @Override\r\n    public List<Pack> findPacksByPriceAndDuration(String minPrice, String maxPrice, String minDuration, String maxDuration) {\r\n        return packRepo.findByPrixBetweenAndDureeBetween(minPrice, maxPrice, minDuration, maxDuration);\r\n\r\n    }\r\n    @Override\r\n    public void deletePack(Long id) {\r\n        packRepo.deleteById(id);\r\n    }\r\n\r\n    @Override\r\n    public List<Activity> getAllActitivities() {\r\n        return activityRepo.findAll();\r\n    }\r\n\r\n    @Override\r\n    public Activity addActivity(Activity a) {\r\n        return activityRepo.save(a);\r\n    }\r\n\r\n    @Override\r\n    public Activity updateActvity(Activity p) {\r\n        return activityRepo.save(p);\r\n    }\r\n\r\n    @Override\r\n    public void deleteActivity(Long id) {\r\n        activityRepo.deleteById(id);\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java b/Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java
+--- a/Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java	
++++ b/Pack_MService/src/main/java/com/example/pack_mservice/service/packageService.java	
+@@ -1,8 +1,6 @@
+ package com.example.pack_mservice.service;
+ 
+ import jakarta.transaction.Transactional;
+-import lombok.*;
+-import lombok.extern.slf4j.Slf4j;
+ import com.example.pack_mservice.entity.*;
+ import com.example.pack_mservice.repository.activityRepository;
+ import com.example.pack_mservice.repository.packRepository;
+@@ -12,9 +10,7 @@
+ import java.util.List;
+ 
+ @Service
+-@RequiredArgsConstructor
+ @Transactional
+-@Slf4j
+ public class packageService implements IPackageService{
+     @Autowired
+     packRepository packRepo;
