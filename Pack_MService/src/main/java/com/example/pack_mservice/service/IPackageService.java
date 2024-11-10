@@ -11,8 +11,15 @@ public interface IPackageService {
     Pack updatePack(Pack p);
     List<Pack> findPacksByPriceAndDuration(String minPrice, String maxPrice, String minDuration, String maxDuration);
     void deletePack(Long id);
-    List<Activity> getAllActitivities();
+    List<Activity> getAllActivities();
     Activity addActivity(Activity a);
-    Activity updateActvity(Activity p);
+    Activity updateActivity(Activity p);
     void deleteActivity(Long id);
+
+    // Advanced Service Methods
+    List<Pack> findPacksByActivityId(Long activityId);
+    Pack addActivityToPack(Long packId, Long activityId);
+    Activity getActById(Long idAct);
+    Pack getPackById(Long idPack);
+    List<Pack> getPacksWithActivityDetails();
 }

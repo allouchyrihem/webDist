@@ -17,7 +17,7 @@ public class GatewayApplication {
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder build)
     {
-        return build.routes().route("event",r->r.path("/pack/hello")
+        return build.routes().route("event",r->r.path("/pack/**")
                 .uri("http://localhost:8082/Pack_MService")).build();
     }
 }
